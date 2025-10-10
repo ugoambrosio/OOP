@@ -1,5 +1,3 @@
-from ridimit import Course
-
 
 class Book_class:
     def __init__(self):
@@ -52,10 +50,21 @@ class User_class:
 
 
 #maincode
+
+
+
 def display():
-    print(Book_class)
-    print(Author_class)
-    print(User_class)
+    print("\n--- BOOKS ---")
+    for book in boks:
+        print('Book ID:',book.book_id, 'Title: ',book.book_title)
+
+    print("\n--- AUTHORS ---")
+    for author in authors:
+        print('Author ID: ',author.author_id ,'Name:',author.author_name)
+
+    print("\n--- USERS ---")
+    for user in ucers:
+        print('User ID:', user.user_id,' Name: ',user.name, 'Borrowed:', user.booksborrowed)
 lop = 2
 boks = []
 authors = []
@@ -96,7 +105,16 @@ while lop == 2:
         else:
             print('Otra cosa')
     elif menu1 == 3:
-            booksborrowuser()
+        if ucers:
+            user_id = input('Enter user ID to borrow book: ')
+            book_id = input('Enter book ID to borrow: ')
+
+
+            for user in ucers:
+                if user.user_id == user_id:
+                    user.booksborrowed.append(book_id)
+                    print('Book' ,book_id,' added to user' ,user_id)
+                    break
 
 
 
