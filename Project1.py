@@ -5,7 +5,7 @@ class account:
         self.number_account = ''
         self.email_account = ''
         self.id_person = ''
-        self.age_person = ''
+        self.age_person = 0
         self.gender_person = ''
     def add_an_account(self):
         self.user_account = input("Write your name\n")
@@ -22,38 +22,58 @@ class account:
         print('ID: ',self.id_person)
         print('Age: ',self.age_person)
         print('Gender: ',self.gender_person)
-class patient:
+class patient(account):
     def __init__(self):
+        super().__init__()
         self.diagnosis_patient = ''
+        self.medication_patient = ''
     def add_a_patient(self):
-        pass
+        account.add_an_account(self)
+        self.diagnosis_patient = input('Write the diagnosis of the patient\n')
+        self.medication_patient = input('Write the medication of the patient\n')
     def print_information_patient(self):
         pass
 
-class doctor:
+class doctor(account):
     def __init__(self):
+        super().__init__()
         self.specialty_doctor = ''
         self.experience_doctor = ''
+    def add_a_doctor(self):
+        account.add_an_account(self)
+        self.specialty_doctor = input('Write the specialty of the doctor\n')
+        self.experience_doctor = input('Write the experience of the doctor\n')
     def print_information_doctor(self):
-        pass
-class nurse:
+        account.print_user_information(self)
+        print('Specialty: ', self.specialty_doctor)
+        print('Experince: ',self.experience_doctor)
+class nurse(account):
     def __init__(self):
+        super().__init__()
         self.certificacions_nurse = ''
         self.specialty_nurse = ''
         self.experience_nurse = ''
+    def add_a_nurse(self):
+        account.add_an_account(self)
+        self.certificacions_nurse = input('Write the certificacions of the nurse\n')
+        self.specialty_nurse = input('Write the specialty of the nurse\n')
+        self.experience_nurse = input('Write the experience of the nurse\n')
     def print_information_nurse(self):
-        pass
+        account.print_user_information(self)
+        print('Certificacions: ',self.certificacions_nurse)
+        print('Specialty: ',self.specialty_nurse)
+        print('Experience: ',self.experience_nurse)
 class administrative(account):
     def __init__(self):
         super().__init__()
         self.staff_administrative = ''
         self.schedule = ''
     def add_an_administrative(self):
-        account.add_an_account()
+        account.add_an_account(self)
         self.staff_administrative = input('Write the type of staff\n')
         self.schedule = input('Write the schedule\n')
     def print_information_administrative(self):
-        account.print_user_information()
+        account.print_user_information(self)
         print('Type shi: ',self.staff_administrative)
         print('Schedule: ',self.schedule)
 
@@ -67,5 +87,6 @@ class billing:
     def __init__(self):
         self.billing_records = []
 
-c1 = account()
-c1.add_an_account()
+c1 = administrative()
+c1.add_an_administrative()
+c1.print_information_administrative()
